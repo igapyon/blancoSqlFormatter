@@ -15,16 +15,16 @@ import java.util.List;
 import blanco.commons.sql.format.valueobject.BlancoSqlToken;
 
 /**
- * BlancoSqlFormatter: SQL���`�c�[��. SQL�������߂�ꂽ���[���ɏ]�����`���܂��B
+ * BlancoSqlFormatter: SQL整形ツール. SQL文を決められたルールに従い整形します。
  * 
- * �t�H�[�}�b�g�����{���邽�߂ɂ́A���͂����SQL��SQL���Ƃ��đÓ��ł��邱�Ƃ��O������ƂȂ�܂��B
+ * フォーマットを実施するためには、入力されるSQLがSQL文として妥当であることが前提条件となります。
  * 
- * ���̃N���X����������SQL���`�̃��[���ɂ��ẮA���LURL���Q�Ƃ��������B
+ * このクラスが準拠するSQL整形のルールについては、下記URLを参照ください。
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html
  * 
- * ���̃N���X�� SQL������͂��镔���ł��B<br>
- * 2005.08.12 Tosiki Iga: �������̃��[�e�B���e�B���\�b�h�� public static�����܂����B<br>
- * 2005.08.12 Tosiki Iga: 65535(���Ƃ�-1)�̓z���C�g�X�y�[�X�Ƃ��Ĉ����悤�ύX���܂��B
+ * このクラスは SQL文を解析する部分です。<br>
+ * 2005.08.12 Tosiki Iga: いくつかのユーティリティメソッドを public static化しました。<br>
+ * 2005.08.12 Tosiki Iga: 65535(もとは-1)はホワイトスペースとして扱うよう変更します。
  * 
  * @author WATANABE Yoshinori (a-san) : original version at 2005.07.04.
  * @author IGA Tosiki : marge into blanc Framework at 2005.07.04
@@ -32,59 +32,59 @@ import blanco.commons.sql.format.valueobject.BlancoSqlToken;
 public class BlancoSqlParser {
 
     /**
-     * ��͑O�̕�����
+     * 解析前の文字列
      */
     private String fBefore;
 
     /**
-     * ��͒��̕����B
+     * 解析中の文字。
      */
     private char fChar;
 
     /**
-     * ��͒��̈ʒu
+     * 解析中の位置
      */
     private int fPos;
 
     /**
-     * �Q��������Ȃ�L���B
+     * ２文字からなる記号。
      * 
-     * �Ȃ��A|| �͕����񌋍��ɂ�����܂��B
+     * なお、|| は文字列結合にあたります。
      */
     private static final String[] twoCharacterSymbol = { "<>", "<=", ">=", "||" };
 
     /**
-     * �p�[�T�̃C���X�^���X���쐬���܂��B
+     * パーサのインスタンスを作成します。
      */
     public BlancoSqlParser() {
     }
 
     /**
-     * �^����ꂽ�������A�z���C�g�X�y�[�X�������ǂ����𔻒肵�܂��B
+     * 与えられた文字が、ホワイトスペース文字かどうかを判定します。
      * 
      * @param argChar
      * @return
      */
     public static boolean isSpace(final char argChar) {
-        // 2005.07.26 Tosiki Iga \r �������͈͂Ɋ܂߂�K�v������܂��B
-        // 2005.08.12 Tosiki Iga 65535(���Ƃ�-1)�̓z���C�g�X�y�[�X�Ƃ��Ĉ����悤�ύX���܂��B
+        // 2005.07.26 Tosiki Iga \r も処理範囲に含める必要があります。
+        // 2005.08.12 Tosiki Iga 65535(もとは-1)はホワイトスペースとして扱うよう変更します。
         return argChar == ' ' || argChar == '\t' || argChar == '\n'
                 || argChar == '\r' || argChar == 65535;
     }
 
     /**
-     * �����Ƃ��ĔF�����đÓ����ǂ����𔻒肵�܂��B
+     * 文字として認識して妥当かどうかを判定します。
      * 
-     * �S�p�����Ȃǂ������Ƃ��ĔF�������e������̂Ɣ��f���܂�<br>
-     * �����̃��\�b�h��BlancoSqlEditorPlugin����Q�Ƃ���܂��B
+     * 全角文字なども文字として認識を許容するものと判断します<br>
+     * ※このメソッドはBlancoSqlEditorPluginから参照されます。
      * 
      * @param argChar
      * @return
      */
     public static boolean isLetter(final char argChar) {
-        // SQL�ɂ����� �A���_�[�X�R�A�͉p���̒��Ԃł�.
-        // blanco �ɂ����� # �͉p���̒��Ԃł�.
-        // �����ɓ��{����܂߂Ȃ��Ă͂Ȃ�Ȃ��B
+        // SQLにおいて アンダースコアは英字の仲間です.
+        // blanco において # は英字の仲間です.
+        // ここに日本語も含めなくてはならない。
         // return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')
         // || (c == '_' || c == '#');
         if (isSpace(argChar)) {
@@ -100,7 +100,7 @@ public class BlancoSqlParser {
     }
 
     /**
-     * �������ǂ����𔻒肵�܂��B
+     * 数字かどうかを判定します。
      * 
      * @param argChar
      * @return
@@ -110,7 +110,7 @@ public class BlancoSqlParser {
     }
 
     /**
-     * �L�����ǂ����𔻒肵�܂��B
+     * 記号かどうかを判定します。
      * 
      * @param argChar
      * @return
@@ -137,9 +137,9 @@ public class BlancoSqlParser {
         case '=': // equals operator
         case '>': // greater than operator
 
-            // blanco�ł� # �͕�����̈ꕔ�ł� case '#':
-            // �A���_�[�X�R�A�͋L���Ƃ͈����܂��� case '_': //underscore
-            // ����ȍ~�̕����̈����͕ۗ�
+            // blancoでは # は文字列の一部です case '#':
+            // アンダースコアは記号とは扱いません case '_': //underscore
+            // これ以降の文字の扱いは保留
             // case '!':
             // case '$':
             // case '[':
@@ -156,13 +156,13 @@ public class BlancoSqlParser {
     }
 
     /**
-     * �g�[�N�������ɐi�߂܂��B
+     * トークンを次に進めます。
      * 
-     * pos��i�߂�Bs�Ɍ��ʂ�Ԃ��Btype�ɂ��̎�ނ�ݒ肷��B
+     * posを進める。sに結果を返す。typeにその種類を設定する。
      * 
-     * �s����SQL�̏ꍇ�A��O���������܂��B �����ł́A���@�`�F�b�N�͍s���Ă��Ȃ��_�ɒ��ڂ��Ă��������B
+     * 不正なSQLの場合、例外が発生します。 ここでは、文法チェックは行っていない点に注目してください。
      * 
-     * @return �g�[�N����Ԃ�.
+     * @return トークンを返す.
      */
     BlancoSqlToken nextToken() {
         int start_pos = fPos;
@@ -191,7 +191,7 @@ public class BlancoSqlParser {
             }
         } else if (fChar == ';') {
             fPos++;
-            // 2005.07.26 Tosiki Iga �Z�~�R�����͏I�������ł͂Ȃ��悤�ɂ���B
+            // 2005.07.26 Tosiki Iga セミコロンは終了扱いではないようにする。
             return new BlancoSqlToken(BlancoSqlTokenConstants.SYMBOL, ";",
                     start_pos);
         } else if (isDigit(fChar)) {
@@ -202,7 +202,7 @@ public class BlancoSqlParser {
                 fPos++;
 
                 if (fPos >= fBefore.length()) {
-                    // �����𒴂��Ă���ꍇ�ɂ͏������f���܂��B
+                    // 長さを超えている場合には処理中断します。
                     break;
                 }
 
@@ -212,7 +212,7 @@ public class BlancoSqlParser {
                     start_pos);
         } else if (isLetter(fChar)) {
             String s = "";
-            // �����񒆂̃h�b�g�ɂ��ẮA������ƈ�̂Ƃ��čl����B
+            // 文字列中のドットについては、文字列と一体として考える。
             while (isLetter(fChar) || isDigit(fChar) || fChar == '.') {
                 s += fChar;
                 fPos++;
@@ -236,7 +236,7 @@ public class BlancoSqlParser {
         else if (fChar == '-') {
             fPos++;
             char ch2 = fBefore.charAt(fPos);
-            // -- ����Ȃ������Ƃ�
+            // -- じゃなかったとき
             if (ch2 != '-') {
                 return new BlancoSqlToken(BlancoSqlTokenConstants.SYMBOL, "-",
                         start_pos);
@@ -253,11 +253,11 @@ public class BlancoSqlParser {
                 }
             }
         }
-        // �}���`���C���R�����g
+        // マルチラインコメント
         else if (fChar == '/') {
             fPos++;
             char ch2 = fBefore.charAt(fPos);
-            // /* ����Ȃ������Ƃ�
+            // /* じゃなかったとき
             if (ch2 != '*') {
                 return new BlancoSqlToken(BlancoSqlTokenConstants.SYMBOL, "/",
                         start_pos);
@@ -303,14 +303,14 @@ public class BlancoSqlParser {
         }
 
         else if (isSymbol(fChar)) {
-            // �L��
+            // 記号
             String s = "" + fChar;
             fPos++;
             if (fPos >= fBefore.length()) {
                 return new BlancoSqlToken(BlancoSqlTokenConstants.SYMBOL, s,
                         start_pos);
             }
-            // �Q�����̋L�����ǂ������ׂ�
+            // ２文字の記号かどうか調べる
             char ch2 = fBefore.charAt(fPos);
             for (int i = 0; i < twoCharacterSymbol.length; i++) {
                 if (twoCharacterSymbol[i].charAt(0) == fChar
@@ -330,11 +330,11 @@ public class BlancoSqlParser {
     }
 
     /**
-     * SQL��������g�[�N���̔z��ɕϊ����܂��B
+     * SQL文字列をトークンの配列に変換します。
      * 
      * @param argSql
-     *            �ϊ��O��SQL��
-     * @return Token�̔z��
+     *            変換前のSQL文
+     * @return Tokenの配列
      */
     public List<BlancoSqlToken> parse(final String argSql) {
         fPos = 0;

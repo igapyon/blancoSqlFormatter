@@ -11,10 +11,10 @@ package blanco.commons.sql.format;
 import junit.framework.TestCase;
 
 /**
- * BlancoSqlFormatter: SQL®Œ`ƒc[ƒ‹. SQL•¶‚ğŒˆ‚ß‚ç‚ê‚½ƒ‹[ƒ‹‚É]‚¢®Œ`‚µ‚Ü‚·B <br>
- * SQL•¶‚Æ‚µ‚Ä³‚µ‚¢‚±‚Æ‚ª‘O’ñğŒ‚Å‚·B
+ * BlancoSqlFormatter: SQLæ•´å½¢ãƒ„ãƒ¼ãƒ«. SQLæ–‡ã‚’æ±ºã‚ã‚‰ã‚ŒãŸãƒ«ãƒ¼ãƒ«ã«å¾“ã„æ•´å½¢ã—ã¾ã™ã€‚ <br>
+ * SQLæ–‡ã¨ã—ã¦æ­£ã—ã„ã“ã¨ãŒå‰ææ¡ä»¶ã§ã™ã€‚
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html <br>
- * ’Ç‰Á‚ÌSQL®Œ`ƒR[ƒfƒBƒ“ƒOƒ‹[ƒ‹‚É]‚¢A’P‘ÌŒ±‚ğÀ{‚µ‚Ü‚·B
+ * è¿½åŠ ã®SQLæ•´å½¢ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ã«å¾“ã„ã€å˜ä½“è©¦é¨“ã‚’å®Ÿæ–½ã—ã¾ã™ã€‚
  * 
  * @author iga
  */
@@ -27,7 +27,7 @@ public class BlancoSqlFormatterTest04 extends TestCase {
         String strResult = formatter
                 .format("SELECT a ,avg (b * case when c is null then 0 else c End) from t1 left outer join s Using (a) group by e");
         // System.out.println(strResult);
-        assertEquals("CASE WHEN‚ÉŠÖ‚·‚éŒ±", "SELECT\n" + "        a\n"
+        assertEquals("CASE WHENã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n" + "        a\n"
                 + "        ,AVG (\n" + "            b * CASE\n"
                 + "                WHEN c IS NULL"
                 + "\n                THEN 0\n" + "                ELSE c\n"
@@ -37,7 +37,7 @@ public class BlancoSqlFormatterTest04 extends TestCase {
     }
 
     /**
-     * HAVING‚Ì®Œ`
+     * HAVINGã®æ•´å½¢
      * 
      * @throws Exception
      */
@@ -48,7 +48,7 @@ public class BlancoSqlFormatterTest04 extends TestCase {
         String strResult = formatter
                 .format("SELECT a ,MAX (b) FROM table_c GROUP BY a having MAX (b) > 10");
         // System.out.println(strResult);
-        assertEquals("HAVING‚ÉŠÖ‚·‚éŒ±", "SELECT\n" + "        a\n"
+        assertEquals("HAVINGã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n" + "        a\n"
                 + "        ,MAX (b)\n" + "    FROM\n" + "        table_c\n"
                 + "    GROUP BY\n" + "        a\n" + "    HAVING\n"
                 + "        MAX (b) > 10", strResult);

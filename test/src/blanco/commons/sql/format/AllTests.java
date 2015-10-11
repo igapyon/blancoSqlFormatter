@@ -1,8 +1,8 @@
 /*
- * ì¬“ú: 2005/07/07
+ * ä½œæˆæ—¥: 2005/07/07
  *
- * TODO ‚±‚Ì¶¬‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìƒeƒ“ƒvƒŒ[ƒg‚ð•ÏX‚·‚é‚É‚ÍŽŸ‚ÖƒWƒƒƒ“ƒv:
- * ƒEƒBƒ“ƒhƒE - Ý’è - Java - ƒR[ƒhEƒXƒ^ƒCƒ‹ - ƒR[ƒhEƒeƒ“ƒvƒŒ[ƒg
+ * TODO ã“ã®ç”Ÿæˆã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’å¤‰æ›´ã™ã‚‹ã«ã¯æ¬¡ã¸ã‚¸ãƒ£ãƒ³ãƒ—:
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ - è¨­å®š - Java - ã‚³ãƒ¼ãƒ‰ãƒ»ã‚¹ã‚¿ã‚¤ãƒ« - ã‚³ãƒ¼ãƒ‰ãƒ»ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
  */
 package blanco.commons.sql.format;
 
@@ -12,8 +12,8 @@ import junit.framework.TestSuite;
 /**
  * @author iga
  * 
- * TODO ‚±‚Ì¶¬‚³‚ê‚½Œ^ƒRƒƒ“ƒg‚Ìƒeƒ“ƒvƒŒ[ƒg‚ð•ÏX‚·‚é‚É‚ÍŽŸ‚ÖƒWƒƒƒ“ƒv: ƒEƒBƒ“ƒhƒE - Ý’è - Java - ƒR[ƒhEƒXƒ^ƒCƒ‹ -
- * ƒR[ƒhEƒeƒ“ƒvƒŒ[ƒg
+ * TODO ã“ã®ç”Ÿæˆã•ã‚ŒãŸåž‹ã‚³ãƒ¡ãƒ³ãƒˆã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’å¤‰æ›´ã™ã‚‹ã«ã¯æ¬¡ã¸ã‚¸ãƒ£ãƒ³ãƒ—: ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ - è¨­å®š - Java - ã‚³ãƒ¼ãƒ‰ãƒ»ã‚¹ã‚¿ã‚¤ãƒ« -
+ * ã‚³ãƒ¼ãƒ‰ãƒ»ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
  */
 public class AllTests {
 

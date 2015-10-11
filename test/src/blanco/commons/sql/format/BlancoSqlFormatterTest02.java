@@ -11,10 +11,10 @@ package blanco.commons.sql.format;
 import junit.framework.TestCase;
 
 /**
- * BlancoSqlFormatter: SQL®Œ`ƒc[ƒ‹. SQL•¶‚ğŒˆ‚ß‚ç‚ê‚½ƒ‹[ƒ‹‚É]‚¢®Œ`‚µ‚Ü‚·B <br>
- * SQL•¶‚Æ‚µ‚Ä³‚µ‚¢‚±‚Æ‚ª‘O’ñğŒ‚Å‚·B
+ * BlancoSqlFormatter: SQLæ•´å½¢ãƒ„ãƒ¼ãƒ«. SQLæ–‡ã‚’æ±ºã‚ã‚‰ã‚ŒãŸãƒ«ãƒ¼ãƒ«ã«å¾“ã„æ•´å½¢ã—ã¾ã™ã€‚ <br>
+ * SQLæ–‡ã¨ã—ã¦æ­£ã—ã„ã“ã¨ãŒå‰ææ¡ä»¶ã§ã™ã€‚
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html <br>
- * ’Ç‰Á‚ÌSQL®Œ`ƒR[ƒfƒBƒ“ƒOƒ‹[ƒ‹‚É]‚¢A’P‘ÌŒ±‚ğÀ{‚µ‚Ü‚·B
+ * è¿½åŠ ã®SQLæ•´å½¢ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ã«å¾“ã„ã€å˜ä½“è©¦é¨“ã‚’å®Ÿæ–½ã—ã¾ã™ã€‚
  * 
  * @author iga
  */
@@ -25,12 +25,12 @@ public class BlancoSqlFormatterTest02 extends TestCase {
                 new BlancoSqlRule());
 
         String strResult = formatter
-                .format("SELECT col1 FROM table1 AS t1 WHERE col1>'’l \"value' ; SELECT col1 FROM table1 AS t1 WHERE col1>'’l \"value'");
-        assertEquals("ƒZƒ~ƒRƒƒ“‚ÉŠÖ‚·‚éŒ±", "SELECT\n" + "        col1\n"
+                .format("SELECT col1 FROM table1 AS t1 WHERE col1>'å€¤ \"value' ; SELECT col1 FROM table1 AS t1 WHERE col1>'å€¤ \"value'");
+        assertEquals("ã‚»ãƒŸã‚³ãƒ­ãƒ³ã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n" + "        col1\n"
                 + "    FROM\n" + "        table1 AS t1\n" + "    WHERE\n"
-                + "        col1 > '’l \"value'\n" + "; SELECT\n"
+                + "        col1 > 'å€¤ \"value'\n" + "; SELECT\n"
                 + "        col1\n" + "    FROM\n" + "        table1 AS t1\n"
-                + "    WHERE\n" + "        col1 > '’l \"value'", strResult);
+                + "    WHERE\n" + "        col1 > 'å€¤ \"value'", strResult);
         // System.out.println(strResult);
     }
 
@@ -39,9 +39,9 @@ public class BlancoSqlFormatterTest02 extends TestCase {
                 new BlancoSqlRule());
 
         String strResult = formatter
-                .format("select uriage * 0.05 as Á”ïÅ from ‘ä’ ");
-        assertEquals("Š|‚¯Z‚ÉŠÖ‚·‚éŒ±", "SELECT\n" + "        uriage * 0.05 AS Á”ïÅ\n"
-                + "    FROM\n" + "        ‘ä’ ", strResult);
+                .format("select uriage * 0.05 as æ¶ˆè²»ç¨ from å°å¸³");
+        assertEquals("æ›ã‘ç®—ã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n" + "        uriage * 0.05 AS æ¶ˆè²»ç¨\n"
+                + "    FROM\n" + "        å°å¸³", strResult);
         // System.out.println(strResult);
     }
 
@@ -50,10 +50,10 @@ public class BlancoSqlFormatterTest02 extends TestCase {
                 new BlancoSqlRule());
 
         String strResult = formatter
-                .format("select user_name from “¾ˆÓæ where kaisya_name like '“ú–{%'");
-        assertEquals("ƒƒCƒ‹ƒhƒJ[ƒh‚ÉŠÖ‚·‚éŒ±", "SELECT\n" + "        user_name\n"
-                + "    FROM\n" + "        “¾ˆÓæ\n" + "    WHERE\n"
-                + "        kaisya_name LIKE '“ú–{%'", strResult);
+                .format("select user_name from å¾—æ„å…ˆ where kaisya_name like 'æ—¥æœ¬%'");
+        assertEquals("ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒ‰ã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n" + "        user_name\n"
+                + "    FROM\n" + "        å¾—æ„å…ˆ\n" + "    WHERE\n"
+                + "        kaisya_name LIKE 'æ—¥æœ¬%'", strResult);
         // System.out.println(strResult);
     }
 
@@ -62,10 +62,10 @@ public class BlancoSqlFormatterTest02 extends TestCase {
                 new BlancoSqlRule());
 
         String strResult = formatter
-                .format("select user_name || '‚³‚ñ' as Œp³•t–¼Ì from “¾ˆÓæ");
-        assertEquals("•¶š—ñŒ‹‡‚ÉŠÖ‚·‚éŒ±", "SELECT\n"
-                + "        user_name || '‚³‚ñ' AS Œp³•t–¼Ì\n" + "    FROM\n"
-                + "        “¾ˆÓæ", strResult);
+                .format("select user_name || 'ã•ã‚“' as ç¶™æ‰¿ä»˜åç§° from å¾—æ„å…ˆ");
+        assertEquals("æ–‡å­—åˆ—çµåˆã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n"
+                + "        user_name || 'ã•ã‚“' AS ç¶™æ‰¿ä»˜åç§°\n" + "    FROM\n"
+                + "        å¾—æ„å…ˆ", strResult);
         // System.out.println(strResult);
     }
 
@@ -75,7 +75,7 @@ public class BlancoSqlFormatterTest02 extends TestCase {
 
         String strResult = formatter
                 .format("select a,b from (select a,b from table1 where user_cd = '0123' union select a,b from table1 where user_cd = '0122') where zip_code = '105'");
-        assertEquals("UNION‚ÉŠÖ‚·‚éŒ±", "SELECT\n" + "        a\n" + "        ,b\n"
+        assertEquals("UNIONã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n" + "        a\n" + "        ,b\n"
                 + "    FROM\n" + "        (\n" + "            SELECT\n"
                 + "                    a\n" + "                    ,b\n"
                 + "                FROM\n" + "                    table1\n"
@@ -95,10 +95,10 @@ public class BlancoSqlFormatterTest02 extends TestCase {
                 new BlancoSqlRule());
 
         String strResult = formatter
-                .format("select user_name || '‚³‚ñ' as Œp³•t–¼Ì from “¾ˆÓæ\n");
-        assertEquals("‰üs‚ÉŠÖ‚·‚éŒ±", "SELECT\n"
-                + "        user_name || '‚³‚ñ' AS Œp³•t–¼Ì\n" + "    FROM\n"
-                + "        “¾ˆÓæ\n", strResult);
+                .format("select user_name || 'ã•ã‚“' as ç¶™æ‰¿ä»˜åç§° from å¾—æ„å…ˆ\n");
+        assertEquals("æ”¹è¡Œã«é–¢ã™ã‚‹è©¦é¨“", "SELECT\n"
+                + "        user_name || 'ã•ã‚“' AS ç¶™æ‰¿ä»˜åç§°\n" + "    FROM\n"
+                + "        å¾—æ„å…ˆ\n", strResult);
         // System.out.println(strResult);
     }
 }

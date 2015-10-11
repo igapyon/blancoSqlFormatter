@@ -1,116 +1,116 @@
 /*
- * ���̃\�[�X�R�[�h�� blanco Framework�ɂ�莩����������܂����B
+ * このソースコードは blanco Frameworkにより自動生成されました。
  */
 package blanco.commons.sql.format.valueobject;
 
 /**
- * blancoSqlFormatter�ŗ��p�����g�[�N��������킷�o�����[�I�u�W�F�N�g�B
+ * blancoSqlFormatterで利用されるトークンをあらわすバリューオブジェクト。
  */
 public class AbstractBlancoSqlToken {
     /**
-     * �t�B�[���h [type]
+     * フィールド [type]
      *
-     * ���ڂ̌^ [int]<br>
-     * �g�[�N����ʂ�����킵�܂��B
+     * 項目の型 [int]<br>
+     * トークン種別をあらわします。
      */
     private int fType;
 
     /**
-     * �t�B�[���h [string]
+     * フィールド [string]
      *
-     * ���ڂ̌^ [java.lang.String]<br>
-     * �g�[�N���̎��ۂ̕����������킵�܂��B
+     * 項目の型 [java.lang.String]<br>
+     * トークンの実際の文字列をあらわします。
      */
     private String fString;
 
     /**
-     * �t�B�[���h [pos]
+     * フィールド [pos]
      *
-     * ���ڂ̌^ [int]<br>
-     * �K��l   [-1]<br>
-     * �\���A�R�����g�A�l�Ȃǂ̃g�[�N���̈ʒu������킷�t�B�[���h�B�\�[�X������̐擪����̈ʒu������킵�܂��B�l�� �[��(ZERO)�I���W���ł��B�f�t�H���g�l�� (-1)�ŁA(-1) �̏ꍇ�ɂ́u�ʒu���ɈӖ����Ȃ��v���Ƃ�����킵�܂��B
+     * 項目の型 [int]<br>
+     * 規定値   [-1]<br>
+     * 予約語、コメント、値などのトークンの位置をあらわすフィールド。ソース文字列の先頭からの位置をあらわします。値は ゼロ(ZERO)オリジンです。デフォルト値は (-1)で、(-1) の場合には「位置情報に意味がない」ことをあらわします。
      */
     private int fPos = -1;
 
     /**
-     * �t�B�[���h [type]�̃Z�b�^�[���\�b�h
+     * フィールド [type]のセッターメソッド
      *
-     * ���ڂ̌^ [int]<br>
-     * �g�[�N����ʂ�����킵�܂��B
+     * 項目の型 [int]<br>
+     * トークン種別をあらわします。
      *
-     * @param argType �t�B�[���h[type]�Ɋi�[�������l
+     * @param argType フィールド[type]に格納したい値
      */
     public void setType(final int argType) {
         fType = argType;
     }
 
     /**
-     * �t�B�[���h[type]�̃Q�b�^�[���\�b�h
+     * フィールド[type]のゲッターメソッド
      *
-     * ���ڂ̌^ [int]<br>
-     * �g�[�N����ʂ�����킵�܂��B
+     * 項目の型 [int]<br>
+     * トークン種別をあらわします。
      *
-     * @return �t�B�[���h[type]�Ɋi�[����Ă���l
+     * @return フィールド[type]に格納されている値
      */
     public int getType() {
         return fType;
     }
 
     /**
-     * �t�B�[���h [string]�̃Z�b�^�[���\�b�h
+     * フィールド [string]のセッターメソッド
      *
-     * ���ڂ̌^ [java.lang.String]<br>
-     * �g�[�N���̎��ۂ̕����������킵�܂��B
+     * 項目の型 [java.lang.String]<br>
+     * トークンの実際の文字列をあらわします。
      *
-     * @param argString �t�B�[���h[string]�Ɋi�[�������l
+     * @param argString フィールド[string]に格納したい値
      */
     public void setString(final String argString) {
         fString = argString;
     }
 
     /**
-     * �t�B�[���h[string]�̃Q�b�^�[���\�b�h
+     * フィールド[string]のゲッターメソッド
      *
-     * ���ڂ̌^ [java.lang.String]<br>
-     * �g�[�N���̎��ۂ̕����������킵�܂��B
+     * 項目の型 [java.lang.String]<br>
+     * トークンの実際の文字列をあらわします。
      *
-     * @return �t�B�[���h[string]�Ɋi�[����Ă���l
+     * @return フィールド[string]に格納されている値
      */
     public String getString() {
         return fString;
     }
 
     /**
-     * �t�B�[���h [pos]�̃Z�b�^�[���\�b�h
+     * フィールド [pos]のセッターメソッド
      *
-     * ���ڂ̌^ [int]<br>
-     * �\���A�R�����g�A�l�Ȃǂ̃g�[�N���̈ʒu������킷�t�B�[���h�B�\�[�X������̐擪����̈ʒu������킵�܂��B�l�� �[��(ZERO)�I���W���ł��B�f�t�H���g�l�� (-1)�ŁA(-1) �̏ꍇ�ɂ́u�ʒu���ɈӖ����Ȃ��v���Ƃ�����킵�܂��B
+     * 項目の型 [int]<br>
+     * 予約語、コメント、値などのトークンの位置をあらわすフィールド。ソース文字列の先頭からの位置をあらわします。値は ゼロ(ZERO)オリジンです。デフォルト値は (-1)で、(-1) の場合には「位置情報に意味がない」ことをあらわします。
      *
-     * @param argPos �t�B�[���h[pos]�Ɋi�[�������l
+     * @param argPos フィールド[pos]に格納したい値
      */
     public void setPos(final int argPos) {
         fPos = argPos;
     }
 
     /**
-     * �t�B�[���h[pos]�̃Q�b�^�[���\�b�h
+     * フィールド[pos]のゲッターメソッド
      *
-     * ���ڂ̌^ [int]<br>
-     * �K��l   [-1]<br>
-     * �\���A�R�����g�A�l�Ȃǂ̃g�[�N���̈ʒu������킷�t�B�[���h�B�\�[�X������̐擪����̈ʒu������킵�܂��B�l�� �[��(ZERO)�I���W���ł��B�f�t�H���g�l�� (-1)�ŁA(-1) �̏ꍇ�ɂ́u�ʒu���ɈӖ����Ȃ��v���Ƃ�����킵�܂��B
+     * 項目の型 [int]<br>
+     * 規定値   [-1]<br>
+     * 予約語、コメント、値などのトークンの位置をあらわすフィールド。ソース文字列の先頭からの位置をあらわします。値は ゼロ(ZERO)オリジンです。デフォルト値は (-1)で、(-1) の場合には「位置情報に意味がない」ことをあらわします。
      *
-     * @return �t�B�[���h[pos]�Ɋi�[����Ă���l
+     * @return フィールド[pos]に格納されている値
      */
     public int getPos() {
         return fPos;
     }
 
     /**
-     * ���̃o�����[�I�u�W�F�N�g�̕�����\�����擾���܂��B
+     * このバリューオブジェクトの文字列表現を取得します。
      *
-     * �I�u�W�F�N�g�̃V�����[�͈͂ł���toString����Ȃ��_�ɒ��ӂ��ė��p���Ă��������B
+     * オブジェクトのシャロー範囲でしかtoStringされない点に注意して利用してください。
      *
-     * @return �o�����[�I�u�W�F�N�g�̕�����\���B
+     * @return バリューオブジェクトの文字列表現。
      */
     public String toString() {
         final StringBuffer buf = new StringBuffer();

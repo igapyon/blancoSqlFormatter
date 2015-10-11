@@ -18,15 +18,15 @@ import java.util.Stack;
 import blanco.commons.sql.format.valueobject.BlancoSqlToken;
 
 /**
- * BlancoSqlFormatter: SQL���`�c�[��. SQL�������߂�ꂽ���[���ɏ]�����`���܂��B
+ * BlancoSqlFormatter: SQL整形ツール. SQL文を決められたルールに従い整形します。
  * 
- * �t�H�[�}�b�g�����{���邽�߂ɂ́A���͂����SQL��SQL���Ƃ��đÓ��ł��邱�Ƃ��O������ƂȂ�܂��B
+ * フォーマットを実施するためには、入力されるSQLがSQL文として妥当であることが前提条件となります。
  * 
- * ���̃N���X����������SQL���`�̃��[���ɂ��ẮA���LURL���Q�Ƃ��������B
+ * このクラスが準拠するSQL整形のルールについては、下記URLを参照ください。
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html
  * 
- * 2005.08.08 Tosiki Iga: ( ) �ɂ��Ă� (*) �̂悤�ɂЂ�����悤�ɕύX�B <br>
- * 2005.08.03 Tosiki Iga: ���߂�ꂽ��O���X���[����悤�ɕύX���܂����B
+ * 2005.08.08 Tosiki Iga: ( ) については (*) のようにひっつけるように変更。 <br>
+ * 2005.08.03 Tosiki Iga: 決められた例外をスローするように変更しました。
  * 
  * @author Yoshinori WATANABE (a-san) : original version at 2005.07.04.
  * @author Tosiki Iga : marge into blanc Framework at 2005.07.04
@@ -37,30 +37,30 @@ public class BlancoSqlFormatter {
     private BlancoSqlRule fRule = null;
 
     /**
-     * �ۃJ�b�R���֐��̂��̂��ǂ������o����B
+     * 丸カッコが関数のものかどうかを覚える。
      */
     private Stack<Boolean> functionBracket = new Stack<Boolean>();
 
     /**
-     * SQL���`�c�[���̃C���X�^���X���쐬���܂��B
+     * SQL整形ツールのインスタンスを作成します。
      * 
      * @param argRule
-     *            SQL�ϊ����[���B
+     *            SQL変換ルール。
      */
     public BlancoSqlFormatter(final BlancoSqlRule argRule) {
         fRule = argRule;
     }
 
     /**
-     * �^����ꂽSQL�𐮌`���܂��B
+     * 与えられたSQLを整形します。
      * 
-     * 1.���s�ŏI������SQL���́A���`������s�t���ł���悤�ɂ��܂��B
+     * 1.改行で終了するSQL文は、整形後も改行付きであるようにします。
      * 
      * @param argSql
-     *            ���`�O��SQL��
-     * @return ���`���SQL��
+     *            整形前のSQL文
+     * @return 整形後のSQL文
      * @throws BlancoSqlFormatterException
-     *             �����I�ɔ���������O�͑S�Ă��̃N���X�ɂȂ�܂��B
+     *             内部的に発生した例外は全てこのクラスになります。
      */
     public String format(final String argSql)
             throws BlancoSqlFormatterException {
@@ -75,7 +75,7 @@ public class BlancoSqlFormatter {
 
             list = format(list);
 
-            // �ϊ����ʂ𕶎���ɖ߂��B
+            // 変換結果を文字列に戻す。
             String after = "";
             for (int index = 0; index < list.size(); index++) {
                 BlancoSqlToken token = list.get(index);
@@ -96,19 +96,19 @@ public class BlancoSqlFormatter {
     }
 
     /**
-     * ����̔z����A�w�肳�ꂽSQL�����K���ɏ]���ĕϊ����܂��B
+     * 字句の配列を、指定されたSQL書式規則に従って変換します。
      * 
      * @param argList
-     *            �ϊ��O�̎���̔z��BArrayList <Token>
-     * @return �ϊ���̎���̔z��BArrayList <Token>
+     *            変換前の字句の配列。ArrayList <Token>
+     * @return 変換後の字句の配列。ArrayList <Token>
      */
     public List<BlancoSqlToken> format(final List<BlancoSqlToken> argList) {
 
-        // TODO:SQL���`�̃J�X�^�}�C�Y���K�v�ȕ��́A��������A���Ȃ��̍s�����������ɕϊ����ĉ������B
-        // �Ȃ�ׂ��V���v���Ŗ��m�Ȑ��`���[���ɂ��Ă��������B
-        // �܂��A�N���g��Ȃ��悤�ȕs�K�v�ȑI�����͂�߂܂��傤�B
+        // TODO:SQL整形のカスタマイズが必要な方は、ここから、あなたの行いたい書式に変換して下さい。
+        // なるべくシンプルで明確な整形ルールにしてください。
+        // また、誰も使わないような不必要な選択肢はやめましょう。
 
-        // SQL�̑O��ɋ󔒂�����ƍ폜����B
+        // SQLの前後に空白があると削除する。
         BlancoSqlToken token = argList.get(0);
         if (token.getType() == BlancoSqlTokenConstants.SPACE) {
             argList.remove(0);
@@ -119,7 +119,7 @@ public class BlancoSqlFormatter {
             argList.remove(argList.size() - 1);
         }
 
-        // SQL�L�[���[�h�͑啶���Ƃ���Bor ...
+        // SQLキーワードは大文字とする。or ...
         for (int index = 0; index < argList.size(); index++) {
             token = argList.get(index);
             if (token.getType() == BlancoSqlTokenConstants.KEYWORD) {
@@ -136,7 +136,7 @@ public class BlancoSqlFormatter {
             }
         }
 
-        // ��������A�L���̑O��̋󔒂���������
+        // いったん、記号の前後の空白を除去する
         for (int index = argList.size() - 1; index >= 1; index--) {
             token = argList.get(index);
             BlancoSqlToken prevToken = argList.get(index - 1);
@@ -153,10 +153,10 @@ public class BlancoSqlFormatter {
             }
         }
 
-        // �Q���񂾃L�[���[�h�͂P�̃L�[���[�h�Ƃ݂Ȃ��B(ex."INSERT INTO", "ORDER BY")
-        // �ߑ�̌���̓L�[���[�h���Q���Ԃ��Ƃ͂Ȃ��B�Â�����ł́A���R����i�܂�l�Ԃ̌���j��
-        // �߂Â��邽�߁A�L�[���[�h���Q���Ԃ��Ƃ��������B�������A�ߑ�ł�"ORDER_BY"�A���邢��"OrderBy"
-        // �̂悤�ɁA�ǐ��𑹂Ȃ����ƂȂ��A��͂��₷�����@���̗p���Ă���B
+        // ２つ並んだキーワードは１つのキーワードとみなす。(ex."INSERT INTO", "ORDER BY")
+        // 近代の言語はキーワードが２つ並ぶことはない。古い言語では、自然言語（つまり人間の言語）に
+        // 近づけるため、キーワードが２つ並ぶことがあった。しかし、近代では"ORDER_BY"、あるいは"OrderBy"
+        // のように、可読性を損なうことなく、解析しやすい文法を採用している。
         for (int index = 0; index < argList.size() - 2; index++) {
             BlancoSqlToken t0 = argList.get(index);
             BlancoSqlToken t1 = argList.get(index + 1);
@@ -174,20 +174,20 @@ public class BlancoSqlFormatter {
                 }
             }
 
-            // Oracle�Ή� begin 2007/10/24 A.Watanabe
-            // Oracle�̊O���������Z�q"(+)"���P�̉��Z�q�Ƃ���B
+            // Oracle対応 begin 2007/10/24 A.Watanabe
+            // Oracleの外部結合演算子"(+)"を１つの演算子とする。
             if (t0.getString().equals("(") && t1.getString().equals("+")
                     && t2.getString().equals(")")) {
                 t0.setString("(+)");
                 argList.remove(index + 1);
                 argList.remove(index + 1);
             }
-            // Oracle�Ή� end
+            // Oracle対応 end
         }
 
-        // �C���f���g�𐮂���B
+        // インデントを整える。
         int indent = 0;
-        // �ۃJ�b�R�̃C���f���g�ʒu���o����B
+        // 丸カッコのインデント位置を覚える。
         final Stack<Integer> bracketIndent = new Stack<Integer>();
         BlancoSqlToken prev = new BlancoSqlToken(BlancoSqlTokenConstants.SPACE,
                 " ");
@@ -195,7 +195,7 @@ public class BlancoSqlFormatter {
         for (int index = 0; index < argList.size(); index++) {
             token = argList.get(index);
             if (token.getType() == BlancoSqlTokenConstants.SYMBOL) {
-                // indent���P���₵�A'('�̂��Ƃŉ��s�B
+                // indentを１つ増やし、'('のあとで改行。
                 if (token.getString().equals("(")) {
                     functionBracket
                             .push(fRule.isFunction(prev.getString()) ? Boolean.TRUE
@@ -204,29 +204,29 @@ public class BlancoSqlFormatter {
                     indent++;
                     index += insertReturnAndIndent(argList, index + 1, indent);
                 }
-                // indent���P���₵�A')'�̑O�ƌ��ŉ��s�B
+                // indentを１つ増やし、')'の前と後ろで改行。
                 else if (token.getString().equals(")")) {
                     indent = bracketIndent.pop().intValue();
                     index += insertReturnAndIndent(argList, index, indent);
                     functionBracket.pop();
                 }
-                // ','�̑O�ŉ��s
+                // ','の前で改行
                 else if (token.getString().equals(",")) {
                     index += insertReturnAndIndent(argList, index, indent);
                 } else if (token.getString().equals(";")) {
-                    // 2005.07.26 Tosiki Iga �Ƃ肠�����Z�~�R������SQL�����Ԃ�Ȃ��悤�ɉ���
+                    // 2005.07.26 Tosiki Iga とりあえずセミコロンでSQL文がつぶれないように改良
                     indent = 0;
                     index += insertReturnAndIndent(argList, index, indent);
                 }
             } else if (token.getType() == BlancoSqlTokenConstants.KEYWORD) {
-                // indent���Q���₵�A�L�[���[�h�̌��ŉ��s
+                // indentを２つ増やし、キーワードの後ろで改行
                 if (token.getString().equalsIgnoreCase("DELETE")
                         || token.getString().equalsIgnoreCase("SELECT")
                         || token.getString().equalsIgnoreCase("UPDATE")) {
                     indent += 2;
                     index += insertReturnAndIndent(argList, index + 1, indent);
                 }
-                // indent���P���₵�A�L�[���[�h�̌��ŉ��s
+                // indentを１つ増やし、キーワードの後ろで改行
                 if (token.getString().equalsIgnoreCase("INSERT")
                         || token.getString().equalsIgnoreCase("INTO")
                         || token.getString().equalsIgnoreCase("CREATE")
@@ -237,7 +237,7 @@ public class BlancoSqlFormatter {
                     indent++;
                     index += insertReturnAndIndent(argList, index + 1, indent);
                 }
-                // �L�[���[�h�̑O��indent���P���炵�ĉ��s�A�L�[���[�h�̌���indent��߂��ĉ��s�B
+                // キーワードの前でindentを１つ減らして改行、キーワードの後ろでindentを戻して改行。
                 if (token.getString().equalsIgnoreCase("FROM")
                         || token.getString().equalsIgnoreCase("WHERE")
                         || token.getString().equalsIgnoreCase("SET")
@@ -247,28 +247,28 @@ public class BlancoSqlFormatter {
                     index += insertReturnAndIndent(argList, index, indent - 1);
                     index += insertReturnAndIndent(argList, index + 1, indent);
                 }
-                // �L�[���[�h�̑O��indent���P���炵�ĉ��s�A�L�[���[�h�̌���indent��߂��ĉ��s�B
+                // キーワードの前でindentを１つ減らして改行、キーワードの後ろでindentを戻して改行。
                 if (token.getString().equalsIgnoreCase("VALUES")) {
                     indent--;
                     index += insertReturnAndIndent(argList, index, indent);
                 }
-                // �L�[���[�h�̑O��indent���P���炵�ĉ��s
+                // キーワードの前でindentを１つ減らして改行
                 if (token.getString().equalsIgnoreCase("END")) {
                     indent--;
                     index += insertReturnAndIndent(argList, index, indent);
                 }
-                // �L�[���[�h�̑O�ŉ��s
+                // キーワードの前で改行
                 if (token.getString().equalsIgnoreCase("OR")
                         || token.getString().equalsIgnoreCase("THEN")
                         || token.getString().equalsIgnoreCase("ELSE")) {
                     index += insertReturnAndIndent(argList, index, indent);
                 }
-                // �L�[���[�h�̑O�ŉ��s
+                // キーワードの前で改行
                 if (token.getString().equalsIgnoreCase("ON")
                         || token.getString().equalsIgnoreCase("USING")) {
                     index += insertReturnAndIndent(argList, index, indent + 1);
                 }
-                // �L�[���[�h�̑O�ŉ��s�Bindent�������I�ɂO�ɂ���B
+                // キーワードの前で改行。indentを強制的に０にする。
                 if (token.getString().equalsIgnoreCase("UNION")
                         || token.getString().equalsIgnoreCase("INTERSECT")
                         || token.getString().equalsIgnoreCase("EXCEPT")) {
@@ -280,7 +280,7 @@ public class BlancoSqlFormatter {
                     encounterBetween = true;
                 }
                 if (token.getString().equalsIgnoreCase("AND")) {
-                    // BETWEEN �̂��Ƃ�AND�͉��s���Ȃ��B
+                    // BETWEEN のあとのANDは改行しない。
                     if (!encounterBetween) {
                         index += insertReturnAndIndent(argList, index, indent);
                     }
@@ -288,14 +288,14 @@ public class BlancoSqlFormatter {
                 }
             } else if (token.getType() == BlancoSqlTokenConstants.COMMENT) {
                 if (token.getString().startsWith("/*")) {
-                    // �}���`���C���R�����g�̌�ɉ��s������B
+                    // マルチラインコメントの後に改行を入れる。
                     index += insertReturnAndIndent(argList, index + 1, indent);
                 }
             }
             prev = token;
         }
 
-        // �ۃJ�b�R�ň͂܂ꂽ (�ЂƂ̍���)�ɂ��Ă͓��ʈ������s���B @author tosiki iga
+        // 丸カッコで囲まれた (ひとつの項目)については特別扱いを行う。 @author tosiki iga
         for (int index = argList.size() - 1; index >= 4; index--) {
             if (index >= argList.size()) {
                 continue;
@@ -319,18 +319,18 @@ public class BlancoSqlFormatter {
             }
         }
 
-        // �O��ɃX�y�[�X������
+        // 前後にスペースを入れる
         for (int index = 1; index < argList.size(); index++) {
             prev = argList.get(index - 1);
             token = argList.get(index);
 
             if (prev.getType() != BlancoSqlTokenConstants.SPACE
                     && token.getType() != BlancoSqlTokenConstants.SPACE) {
-                // �J���}�̌�ɂ̓X�y�[�X����Ȃ�
+                // カンマの後にはスペース入れない
                 if (prev.getString().equals(",")) {
                     continue;
                 }
-                // �֐����̌��ɂ̓X�y�[�X�͓���Ȃ�
+                // 関数名の後ろにはスペースは入れない
                 if (fRule.isFunction(prev.getString())
                         && token.getString().equals("(")) {
                     continue;
@@ -344,33 +344,33 @@ public class BlancoSqlFormatter {
     }
 
     /**
-     * ���s�ƃC���f���g��}������.
+     * 改行とインデントを挿入する.
      * 
      * @param argList
      * @param argIndex
      * @param argIndent
-     * @return �󔒂�}�������ꍇ�͂P���A�󔒂�u���������ꍇ�͂O��Ԃ��B
+     * @return 空白を挿入した場合は１を、空白を置き換えた場合は０を返す。
      */
     private int insertReturnAndIndent(final List<BlancoSqlToken> argList,
             final int argIndex, final int argIndent) {
-        // �֐����ł͉��s�͑}�����Ȃ�
+        // 関数内では改行は挿入しない
         if (functionBracket.contains(Boolean.TRUE))
             return 0;
         try {
-            // �}�����镶������쐬����B
+            // 挿入する文字列を作成する。
             String s = "\n";
-            // �����P�O�ɃV���O�����C���R�����g������Ȃ�A���s�͕s�v�B
+            // もし１つ前にシングルラインコメントがあるなら、改行は不要。
             final BlancoSqlToken prevToken = argList.get(argIndex - 1);
             if (prevToken.getType() == BlancoSqlTokenConstants.COMMENT
                     && prevToken.getString().startsWith("--")) {
                 s = "";
             }
-            // �C���f���g������B
+            // インデントをつける。
             for (int index = 0; index < argIndent; index++) {
                 s += fRule.indentString;
             }
 
-            // �O��ɂ��łɃX�y�[�X������΁A�����u��������B
+            // 前後にすでにスペースがあれば、それを置き換える。
             BlancoSqlToken token = argList.get(argIndex);
             if (token.getType() == BlancoSqlTokenConstants.SPACE) {
                 token.setString(s);
@@ -382,7 +382,7 @@ public class BlancoSqlFormatter {
                 token.setString(s);
                 return 0;
             }
-            // �O��ɂȂ���΁A�V���ɃX�y�[�X��ǉ�����B
+            // 前後になければ、新たにスペースを追加する。
             argList.add(argIndex, new BlancoSqlToken(
                     BlancoSqlTokenConstants.SPACE, s));
             return 1;
@@ -393,7 +393,7 @@ public class BlancoSqlFormatter {
     }
 
     public static void main(final String[] args) throws Exception {
-        // ���[����ݒ肷��
+        // ルールを設定する
         final BlancoSqlRule rule = new BlancoSqlRule();
         rule.keyword = BlancoSqlRule.KEYWORD_UPPER_CASE;
         rule.indentString = "    ";
@@ -452,11 +452,11 @@ public class BlancoSqlFormatter {
         rule.setFunctionNames(mySqlFuncs);
         final BlancoSqlFormatter formatter = new BlancoSqlFormatter(rule);
 
-        // �e�X�g�f�B���N�g�����̃t�@�C�����ꊇ�ŕϊ�����B
+        // テストディレクトリ内のファイルを一括で変換する。
         final File[] files = new File("Test").listFiles();
         for (int i = 0; i < files.length; i++) {
             System.out.println("-- " + files[i]);
-            // �t�@�C����SQL��ǂݍ���.
+            // ファイルのSQLを読み込む.
             final BufferedReader reader = new BufferedReader(new FileReader(
                     files[i]));
             String before = "";
@@ -468,7 +468,7 @@ public class BlancoSqlFormatter {
             }
             reader.close();
 
-            // ���`
+            // 整形
             System.out.println("[before]\n" + before);
             String after = formatter.format(before);
             System.out.println("[after]\n" + after);

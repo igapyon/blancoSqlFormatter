@@ -12,29 +12,29 @@ package blanco.commons.sql.format;
 import java.io.IOException;
 
 /**
- * BlancoSqlFormatter: SQL���`�c�[��. SQL�������߂�ꂽ���[���ɏ]�����`���܂��B
+ * BlancoSqlFormatter: SQL整形ツール. SQL文を決められたルールに従い整形します。
  * 
- * �t�H�[�}�b�g�����{���邽�߂ɂ́A���͂����SQL��SQL���Ƃ��đÓ��ł��邱�Ƃ��O������ƂȂ�܂��B
+ * フォーマットを実施するためには、入力されるSQLがSQL文として妥当であることが前提条件となります。
  * 
- * ���̃N���X����������SQL���`�̃��[���ɂ��ẮA���LURL���Q�Ƃ��������B
+ * このクラスが準拠するSQL整形のルールについては、下記URLを参照ください。
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html
  * 
- * BlancoSqlFormatterException : SQL���`�c�[���̗�O��\���܂��B
+ * BlancoSqlFormatterException : SQL整形ツールの例外を表します。
  * 
- * @author IGA Tosiki : �V�K�쐬 at 2005.08.03
+ * @author IGA Tosiki : 新規作成 at 2005.08.03
  */
 @SuppressWarnings("serial")
 public class BlancoSqlFormatterException extends IOException {
 
     /**
-     * ��O�̃R���X�g���N�^
+     * 例外のコンストラクタ
      */
     public BlancoSqlFormatterException() {
         super();
     }
 
     /**
-     * ��O�̃R���X�g���N�^
+     * 例外のコンストラクタ
      * 
      * @param argMessage
      */

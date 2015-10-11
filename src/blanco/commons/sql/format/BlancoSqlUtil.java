@@ -10,29 +10,29 @@
 package blanco.commons.sql.format;
 
 /**
- * BlancoSqlFormatter: SQL���`�c�[��. SQL�������߂�ꂽ���[���ɏ]�����`���܂��B
+ * BlancoSqlFormatter: SQL整形ツール. SQL文を決められたルールに従い整形します。
  * 
- * �t�H�[�}�b�g�����{���邽�߂ɂ́A���͂����SQL��SQL���Ƃ��đÓ��ł��邱�Ƃ��O������ƂȂ�܂��B
+ * フォーマットを実施するためには、入力されるSQLがSQL文として妥当であることが前提条件となります。
  * 
- * ���̃N���X����������SQL���`�̃��[���ɂ��ẮA���LURL���Q�Ƃ��������B
+ * このクラスが準拠するSQL整形のルールについては、下記URLを参照ください。
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html
  * 
- * ���̃N���X�͊e�탆�[�e�B���e�B�������킦��N���X�ł�.
+ * このクラスは各種ユーティリティをたくわえるクラスです.
  * 
  * @author WATANABE Yoshinori (a-san) : original version at 2005.07.04.
  * @author IGA Tosiki : marge into blanc Framework at 2005.07.04
  */
 public class BlancoSqlUtil {
     /**
-     * �������u��������. ���ꕶ������ɕ����̕ϊ��Ώۂ������Ă��悢�B
+     * 文字列を置き換える. 同一文字列内に複数の変換対象があってもよい。
      * 
      * @param argTargetString
-     *            �����ΏۂƂȂ镶����B
+     *            処理対象となる文字列。
      * @param argFrom
-     *            �ϊ��O�̕�����B(ex." <")
+     *            変換前の文字列。(ex." <")
      * @param argTo
-     *            �ϊ���̕�����B(ex."&lt;")
-     * @return �u�����ꂽ��̕�����B
+     *            変換後の文字列。(ex."&lt;")
+     * @return 置換された後の文字列。
      */
     public static String replace(final String argTargetString,
             final String argFrom, final String argTo) {

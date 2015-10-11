@@ -11,12 +11,12 @@ package blanco.commons.sql.format;
 import junit.framework.TestCase;
 
 /**
- * BlancoSqlFormatter: SQL®Œ`ƒc[ƒ‹. SQL•¶‚ğŒˆ‚ß‚ç‚ê‚½ƒ‹[ƒ‹‚É]‚¢®Œ`‚µ‚Ü‚·B <br>
- * SQL•¶‚Æ‚µ‚Ä³‚µ‚¢‚±‚Æ‚ª‘O’ñğŒ‚Å‚·B
+ * BlancoSqlFormatter: SQLæ•´å½¢ãƒ„ãƒ¼ãƒ«. SQLæ–‡ã‚’æ±ºã‚ã‚‰ã‚ŒãŸãƒ«ãƒ¼ãƒ«ã«å¾“ã„æ•´å½¢ã—ã¾ã™ã€‚ <br>
+ * SQLæ–‡ã¨ã—ã¦æ­£ã—ã„ã“ã¨ãŒå‰ææ¡ä»¶ã§ã™ã€‚
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html <br>
- * ’Ç‰Á‚ÌSQL®Œ`ƒR[ƒfƒBƒ“ƒOƒ‹[ƒ‹‚É]‚¢A’P‘ÌŒ±‚ğÀ{‚µ‚Ü‚·B <br>
+ * è¿½åŠ ã®SQLæ•´å½¢ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ã«å¾“ã„ã€å˜ä½“è©¦é¨“ã‚’å®Ÿæ–½ã—ã¾ã™ã€‚ <br>
  * <br>
- * —áŠO”­¶‚É‚Ü‚Â‚í‚éŒ±‚ğs‚¢‚Ü‚·B
+ * ä¾‹å¤–ç™ºç”Ÿã«ã¾ã¤ã‚ã‚‹è©¦é¨“ã‚’è¡Œã„ã¾ã™ã€‚
  * 
  * @author iga
  */
@@ -30,7 +30,7 @@ public class BlancoSqlFormatterTest03 extends TestCase {
             String strResult = formatter
                     .format("select a,b from (select a,b from table1 where user_cd = '0123");
             strResult.trim();
-            fail("ƒJƒ“ƒ}‚ª•s®‡‚Å‚ ‚é‚Ì‚É—áŠO‚ª”­¶‚µ‚Ü‚¹‚ñ‚Å‚µ‚½B");
+            fail("ã‚«ãƒ³ãƒãŒä¸æ•´åˆã§ã‚ã‚‹ã®ã«ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã›ã‚“ã§ã—ãŸã€‚");
         } catch (BlancoSqlFormatterException ex) {
         }
     }
@@ -43,7 +43,7 @@ public class BlancoSqlFormatterTest03 extends TestCase {
             String strResult = formatter
                     .format("select a,b from (select a,b from \"table1 where user_cd = '0123'");
             strResult.trim();
-            fail("ƒ_ƒuƒ‹ƒNƒI[ƒe[ƒVƒ‡ƒ“‚ª•s®‡‚Å‚ ‚é‚Ì‚É—áŠO‚ª”­¶‚µ‚Ü‚¹‚ñ‚Å‚µ‚½B");
+            fail("ãƒ€ãƒ–ãƒ«ã‚¯ã‚ªãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãŒä¸æ•´åˆã§ã‚ã‚‹ã®ã«ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã›ã‚“ã§ã—ãŸã€‚");
         } catch (BlancoSqlFormatterException ex) {
         }
     }
@@ -53,7 +53,7 @@ public class BlancoSqlFormatterTest03 extends TestCase {
                 new BlancoSqlRule());
 
         {
-            // ‚±‚ê‚ÍŒ»İ‚Ìd—l‚Å‚Í—áŠO‚Í”­¶‚µ‚Ü‚¹‚ñB
+            // ã“ã‚Œã¯ç¾åœ¨ã®ä»•æ§˜ã§ã¯ä¾‹å¤–ã¯ç™ºç”Ÿã—ã¾ã›ã‚“ã€‚
             String strResult = formatter
                     .format("INSERT INTO table1 VALUES (1000,'ABC',256");
             strResult.trim();

@@ -10,19 +10,19 @@
 package blanco.commons.sql.format.valueobject;
 
 /**
- * BlancoSqlFormatter: SQL®Œ`ƒc[ƒ‹. SQL•¶‚ðŒˆ‚ß‚ç‚ê‚½ƒ‹[ƒ‹‚É]‚¢®Œ`‚µ‚Ü‚·B
+ * BlancoSqlFormatter: SQLæ•´å½¢ãƒ„ãƒ¼ãƒ«. SQLæ–‡ã‚’æ±ºã‚ã‚‰ã‚ŒãŸãƒ«ãƒ¼ãƒ«ã«å¾“ã„æ•´å½¢ã—ã¾ã™ã€‚
  * 
- * SQL•¶‚Æ‚µ‚Ä³‚µ‚¢‚±‚Æ‚ª‘O’ñðŒ‚Å‚·B
+ * SQLæ–‡ã¨ã—ã¦æ­£ã—ã„ã“ã¨ãŒå‰ææ¡ä»¶ã§ã™ã€‚
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html <br>
  * 
- * ‚±‚ÌƒNƒ‰ƒX‚Íƒg[ƒNƒ“‚ð‚ ‚ç‚í‚µ‚Ü‚·B
+ * ã“ã®ã‚¯ãƒ©ã‚¹ã¯ãƒˆãƒ¼ã‚¯ãƒ³ã‚’ã‚ã‚‰ã‚ã—ã¾ã™ã€‚
  * 
  * @author WATANABE Yoshinori (a-san) : original version at 2005.07.04.
  * @author IGA Tosiki : marge into blanc Framework at 2005.07.04
  */
 public class BlancoSqlToken extends AbstractBlancoSqlToken {
     /**
-     * SQLƒg[ƒNƒ“‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ðì¬‚µ‚Ü‚·B
+     * SQLãƒˆãƒ¼ã‚¯ãƒ³ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆã—ã¾ã™ã€‚
      * 
      * @param argType
      * @param argString
@@ -36,7 +36,7 @@ public class BlancoSqlToken extends AbstractBlancoSqlToken {
     }
 
     /**
-     * SQLƒg[ƒNƒ“‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ðì¬‚µ‚Ü‚·B
+     * SQLãƒˆãƒ¼ã‚¯ãƒ³ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆã—ã¾ã™ã€‚
      * 
      * @param argType
      * @param argString

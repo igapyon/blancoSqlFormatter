@@ -1,12 +1,12 @@
-blancoSqlFormatter ‚Í SQL•¶‚ð®Œ`‚·‚é‚½‚ß‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Å‚·B
-‚ ‚éˆê’è‚Ì®Œ`ƒ‹[ƒ‹‚É]‚Á‚ÄSQL•¶®Œ`‚ðŽÀŒ»‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+blancoSqlFormatter ã¯ SQLæ–‡ã‚’æ•´å½¢ã™ã‚‹ãŸã‚ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã™ã€‚
+ã‚ã‚‹ä¸€å®šã®æ•´å½¢ãƒ«ãƒ¼ãƒ«ã«å¾“ã£ã¦SQLæ–‡æ•´å½¢ã‚’å®Ÿç¾ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
 
-[ƒ‰ƒCƒZƒ“ƒX]
- 1.blancoSqlFormatter ‚Í ƒ‰ƒCƒZƒ“ƒX ‚Æ‚µ‚Ä GNU Lesser General Public License ‚ðÌ—p‚µ‚Ä‚¢‚Ü‚·B
+[ãƒ©ã‚¤ã‚»ãƒ³ã‚¹]
+ 1.blancoSqlFormatter ã¯ ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ ã¨ã—ã¦ GNU Lesser General Public License ã‚’æŽ¡ç”¨ã—ã¦ã„ã¾ã™ã€‚
 
-[ŠJ”­ŽÒ]
- 1.“n•Ó‹`‘¥ / Yoshinori WATANABE / A-san: ‰Šúƒo[ƒWƒ‡ƒ“‚ÌŠJ”­
- 2.ˆÉ‰ê•qŽ÷ (Tosiki Iga / ‚¢‚ª‚Ò‚å‚ñ): ˆÛŽƒƒ“ƒe’S“–
+[é–‹ç™ºè€…]
+ 1.æ¸¡è¾ºç¾©å‰‡ / Yoshinori WATANABE / A-san: åˆæœŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®é–‹ç™º
+ 2.ä¼Šè³€æ•æ¨¹ (Tosiki Iga / ã„ãŒã´ã‚‡ã‚“): ç¶­æŒãƒ¡ãƒ³ãƒ†æ‹…å½“
 
-[ˆË‘¶‚·‚éƒ‰ƒCƒuƒ‰ƒŠ]
-  “Á‚É‚ ‚è‚Ü‚¹‚ñB
+[ä¾å­˜ã™ã‚‹ãƒ©ã‚¤ãƒ–ãƒ©ãƒª]
+  ç‰¹ã«ã‚ã‚Šã¾ã›ã‚“ã€‚

@@ -1,71 +1,71 @@
 2012.10.16 (0.1.2)
-  BlancoSqlFormatter#format(final List<BlancoSqlToken>) �� public ���B
+  BlancoSqlFormatter#format(final List<BlancoSqlToken>) を public 化。
 
 2008.12.04 (0.1.1)
-  JDK 1.5 �Ή��B
-  TODO LEFT JOIN �� ON �ȉ�����������ꍇ�Ɏ��������ςȂ̂��C���B
-  TODO ��s�R�����g�̂��Ƃ̏����̉��P
-      -- �R�����g
+  JDK 1.5 対応。
+  TODO LEFT JOIN の ON 以下が複数ある場合に字下げが変なのを修正。
+  TODO 一行コメントのあとの処理の改善
+      -- コメント
         SELECT
-      �̂悤�ɃY���Ă��܂��܂��B���̓_�̉��P���K�v�ł��B
-  (�폜)todo.txt
+      のようにズレてしまいます。この点の改善が必要です。
+  (削除)todo.txt
 
-2007.10.28 (0.1.0) JDK 1.4.2 �Ή��̍ŏI��
-  �n�Ӌ`������(a-san)�̕ύX��Ă𔽉f���܂����B
-  # �n�Ӌ`������́AblancoSqlFormatter�̌���҂ł��B
+2007.10.28 (0.1.0) JDK 1.4.2 対応の最終版
+  渡辺義則さん(a-san)の変更提案を反映しました。
+  # 渡辺義則さんは、blancoSqlFormatterの原作者です。
   ----------------------------------------------------------------------
-  ��BlancoSqlFormatter
-    �֐��̎��ɂ͉��s���Ȃ��悤�ɂ��܂����B
-    �܂��Abetween �� and ���̏ꍇ�A�]����and�̑O�ŉ��s���Ă��܂������A
-    ���s���Ȃ��悤�ɂ��܂����B
-  ��BlancoSqlRule
-    �֐��������O�ɓo�^����悤�ɂ��܂����B
-    �܂��A�L�[���[�h��啶��/�������ɂ��邩�������Ȃ�����
-    �ݒ�ł���悤�ɂ��܂����B
+  ●BlancoSqlFormatter
+    関数の時には改行しないようにしました。
+    また、between 式 and 式の場合、従来はandの前で改行していましたが、
+    改行しないようにしました。
+  ●BlancoSqlRule
+    関数名を事前に登録するようにしました。
+    また、キーワードを大文字/小文字にするか何もしないかを
+    設定できるようにしました。
     http://d.hatena.ne.jp/a-san/20071021#p1
     http://d.hatena.ne.jp/a-san/20071022#p1
     http://d.hatena.ne.jp/a-san/20071024#p1
     ----------------------------------------------------------------------
 
-2007.10.02 (0.0.4) �����
-  �n�Ӌ`������(a-san)�̕ύX��Ă𔽉f���܂����B
-  # �n�Ӌ`������́AblancoSqlFormatter�̌���҂ł��B
+2007.10.02 (0.0.4) 安定版
+  渡辺義則さん(a-san)の変更提案を反映しました。
+  # 渡辺義則さんは、blancoSqlFormatterの原作者です。
 
-  [�ړI]
-  �E����̕ύX�̖ړI�� VerticalViewer(Asan��pDB�r���[�A)�ɋ����\���̋@�\�����邽�߂̂��̂ł��B
-    �\����R�����g�A�l�Ȃǂ̈ʒu��m�邽�߂̕ύX���������Ă��܂��B
-  �E����̕ύX�ł� SqlFormatter�̋@�\�Ƃ��Ă͉����ύX�_�͂���܂���B
-    SQL���`�̌`�͕ς��܂��񂵁A���x�������Ȃ邱�Ƃ�����܂���B
-  �E�����͂ł͂悭����p�^�[���Ȃ̂ŁA�����A���̃v���_�N�g�ɂ����Ă��𗧂\�������҂ł��܂��B
+  [目的]
+  ・今回の変更の目的は VerticalViewer(Asan専用DBビューア)に強調表示の機能をつけるためのものです。
+    予約語やコメント、値などの位置を知るための変更が加えられています。
+  ・今回の変更では SqlFormatterの機能としては何も変更点はありません。
+    SQL整形の形は変わりませんし、速度が速くなることもありません。
+  ・字句解析ではよくあるパターンなので、将来、他のプロダクトにおいても役立つ可能性が期待できます。
 
-  [�ύX�ӏ�]
-  �Eblanco.commons.sql.format.valueobject.AbstractBlancoSqlToken
-    �t�B�[���h int fPos ��ǉ����܂����B
-  �Eblanco.commons.sql.format.BlancoSqlParser
-    ���\�b�h nextToken() ���Ő�������Ă��� BlancoSqlToken �� �g�[�N���̈ʒu���w�肷��悤�ɂ��܂����B
-  �Eblanco.commons.sql.format.valueobject.BlancoSqlToken
-    �����𑝂₵���R���X�g���N�^��V���ɗp�ӂ��܂����B
-  �E(�S�̓I��) �������Q�̃R���X�g���N�^�͂R�̃R���X�g���N�^���ĂԂ悤�ɂ��܂����B
-    �������Q�̃R���X�g���N�^���c���Ă���̂́ABlancoSqlFormatter ��
-    ���`����ۂɂ��g���Ă��邩��ł��B���̂Ƃ��́AfPos�̒l��(-1)�ɂȂ�悤�ɂ��܂����B
-    ����́u�ʒu���ɈӖ����Ȃ��v���Ƃ�����킵�܂��B
+  [変更箇所]
+  ・blanco.commons.sql.format.valueobject.AbstractBlancoSqlToken
+    フィールド int fPos を追加しました。
+  ・blanco.commons.sql.format.BlancoSqlParser
+    メソッド nextToken() 内で生成されている BlancoSqlToken に トークンの位置を指定するようにしました。
+  ・blanco.commons.sql.format.valueobject.BlancoSqlToken
+    引数を増やしたコンストラクタを新たに用意しました。
+  ・(全体的に) 引数が２つのコンストラクタは３つのコンストラクタを呼ぶようにしました。
+    引数が２つのコンストラクタを残しているのは、BlancoSqlFormatter で
+    整形する際にも使っているからです。そのときは、fPosの値は(-1)になるようにしました。
+    これは「位置情報に意味がない」ことをあらわします。
 
-  (jar)jar�t�@�C���ނ��X�V���܂����B
+  (jar)jarファイル類を更新しました。
 
 2006.12.08 (0.0.3)
-  ���t�@�N�^�����O�B�\�[�X�R�[�h�𐮗����܂����B
-  (jar)2��blanco Framework�v���_�N�g�𓱓����܂����B
-  ��s�R�����g�����s���Ƃ��Ȃ킸 ���̂܂܏I�������ꍇ�ɗ�O����������̂��C���B
+  リファクタリング。ソースコードを整理しました。
+  (jar)2つのblanco Frameworkプロダクトを導入しました。
+  一行コメントが改行をともなわず そのまま終了した場合に例外が発生するのを修正。
 
 2006.05.09 (0.0.2)
-  INTERSECT, EXCEPT�ɂ��āAUNION�Ɠ��l�̎��������s���悤�ɕύX�B
-  ON�̐��`�ɑΉ��B(INNER JOIN �̍ۂɗ��p����܂�)
-  USING�̐��`�ɑΉ��B
-  ��� LEFT�ł̉��s�ɂ��āA����͎��{���Ȃ��悤�Ɏd�l�ύX�B
+  INTERSECT, EXCEPTについて、UNIONと同様の字下げを行うように変更。
+  ONの整形に対応。(INNER JOIN の際に利用されます)
+  USINGの整形に対応。
+  一方 LEFTでの改行について、これは実施しないように仕様変更。
 
 2006.03.29 (0.0.1)
-  blancoSqlFormatter��ʂ̃v���W�F�N�g�ɕ������܂����B
-  blancoCommons���牺�L�̃p�b�P�[�W��������̃v���W�F�N�g�Ɉڊǂ��܂��B
-  �y�ړ��zblanco.commons.sql.format�p�b�P�[�W�z���B
-  �y�ړ��z�e�X�g�N���X�� blanco.commons.sql.format�p�b�P�[�W�z���B
-  JDK 1.5�ŃR���p�C���\�ł��邱�Ƃ��m�F���܂����B
+  blancoSqlFormatterを別のプロジェクトに分離しました。
+  blancoCommonsから下記のパッケージをこちらのプロジェクトに移管します。
+  【移動】blanco.commons.sql.formatパッケージ配下。
+  【移動】テストクラスの blanco.commons.sql.formatパッケージ配下。
+  JDK 1.5でコンパイル可能であることを確認しました。

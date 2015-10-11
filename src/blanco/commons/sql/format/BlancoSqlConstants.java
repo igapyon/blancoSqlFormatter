@@ -10,20 +10,20 @@
 package blanco.commons.sql.format;
 
 /**
- * BlancoSqlFormatter: SQL���`�c�[��. SQL�������߂�ꂽ���[���ɏ]�����`���܂��B
+ * BlancoSqlFormatter: SQL整形ツール. SQL文を決められたルールに従い整形します。
  * 
- * �t�H�[�}�b�g�����{���邽�߂ɂ́A���͂����SQL��SQL���Ƃ��đÓ��ł��邱�Ƃ��O������ƂȂ�܂��B
+ * フォーマットを実施するためには、入力されるSQLがSQL文として妥当であることが前提条件となります。
  * 
- * ���̃N���X����������SQL���`�̃��[���ɂ��ẮA���LURL���Q�Ƃ��������B
+ * このクラスが準拠するSQL整形のルールについては、下記URLを参照ください。
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html
  * 
- * ���̃N���X�ɂ� ANSI SQL�̗\���ꗗ���~�����܂��B
+ * このクラスには ANSI SQLの予約語一覧が蓄えられます。
  * 
  * @author IGA Tosiki
  */
 public class BlancoSqlConstants {
     /**
-     * ANSI SQL �L�[���[�h
+     * ANSI SQL キーワード
      */
     public static final String[] SQL_RESERVED_WORDS = {
             // ANSI SQL89
@@ -126,13 +126,13 @@ public class BlancoSqlConstants {
             "NONE", "NUMBER", "OBJECT", "OFF", "OLD", "OPERATION",
             "ORDINALITY", "OUT", "PARAMETER", "PARAMETERS", "PATH", "POSTFIX",
             "PREFIX", "PREORDER", "RAW", "READS", "RECURSIVE", "REDO",
-            // ANSI SQL�ł͂Ȃ��̂��� �ƂĂ��ǂ��g����\��
+            // ANSI SQLではないのだが とても良く使われる構文
             "TRUNCATE" };
 
     /**
-     * �L�[���[�h. ANSI SQL89
+     * キーワード. ANSI SQL89
      * 
-     * Eclipse�v���O�C�������痘�p����Ă��܂��B
+     * Eclipseプラグイン側から利用されています。
      */
     public static final String[] SQL89_RESERVED_WORDS = { "ALL", "AND", "ANY",
             "AS", "ASC", "AUTHORIZATION", "AVG", "BEGIN", "BETWEEN", "BY",
@@ -152,9 +152,9 @@ public class BlancoSqlConstants {
             "WHERE", "WITH", "WORK" };
 
     /**
-     * �L�[���[�h. ANSI SQL92
+     * キーワード. ANSI SQL92
      * 
-     * Eclipse�v���O�C�������痘�p����Ă��܂��B
+     * Eclipseプラグイン側から利用されています。
      */
     public static final String[] SQL92_RESERVED_WORDS = { "ABSOLUTE", "ACTION",
             "ADD", "ALLOCATE", "ALTER", "ARE", "ASSERTION", "AT", "BIT",
@@ -183,9 +183,9 @@ public class BlancoSqlConstants {
             "ZONE" };
 
     /**
-     * �L�[���[�h. ANSI SQL99
+     * キーワード. ANSI SQL99
      * 
-     * Eclipse�v���O�C�������痘�p����Ă��܂��B
+     * Eclipseプラグイン側から利用されています。
      */
     public static final String[] SQL99_RESERVED_WORDS = { "ADMIN", "AFTER",
             "AGGREGATE", "ALIAS", "ARRAY", "BEFORE", "BINARY", "BLOB",
@@ -203,9 +203,9 @@ public class BlancoSqlConstants {
             "RAW", "READS", "RECURSIVE", "REDO" };
 
     /**
-     * �L�[���[�h. ANSI SQL�ȊO�̍\��
+     * キーワード. ANSI SQL以外の構文
      * 
-     * Eclipse�v���O�C�������痘�p����Ă��܂��B
+     * Eclipseプラグイン側から利用されています。
      */
     public static final String[] SQL_FAMOUS_WORDS = { "TRUNCATE" };
 }

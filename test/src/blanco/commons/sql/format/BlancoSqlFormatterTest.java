@@ -11,17 +11,17 @@ package blanco.commons.sql.format;
 import junit.framework.TestCase;
 
 /**
- * BlancoSqlFormatter: SQL®Œ`ƒc[ƒ‹. SQL•¶‚ğŒˆ‚ß‚ç‚ê‚½ƒ‹[ƒ‹‚É]‚¢®Œ`‚µ‚Ü‚·B <br>
- * SQL•¶‚Æ‚µ‚Ä³‚µ‚¢‚±‚Æ‚ª‘O’ñğŒ‚Å‚·B
+ * BlancoSqlFormatter: SQLæ•´å½¢ãƒ„ãƒ¼ãƒ«. SQLæ–‡ã‚’æ±ºã‚ã‚‰ã‚ŒãŸãƒ«ãƒ¼ãƒ«ã«å¾“ã„æ•´å½¢ã—ã¾ã™ã€‚ <br>
+ * SQLæ–‡ã¨ã—ã¦æ­£ã—ã„ã“ã¨ãŒå‰ææ¡ä»¶ã§ã™ã€‚
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html <br>
- * ‰Šú‚ÌSQL®Œ`ƒR[ƒfƒBƒ“ƒOƒ‹[ƒ‹‚É]‚¢A’P‘ÌŒ±‚ğÀ{‚µ‚Ü‚·B
+ * åˆæœŸã®SQLæ•´å½¢ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ã«å¾“ã„ã€å˜ä½“è©¦é¨“ã‚’å®Ÿæ–½ã—ã¾ã™ã€‚
  * 
  * @author iga
  */
 public class BlancoSqlFormatterTest extends TestCase {
 
     /**
-     * String format ‚ÌƒeƒXƒg’†‚ÌƒNƒ‰ƒX(String)
+     * String format ã®ãƒ†ã‚¹ãƒˆä¸­ã®ã‚¯ãƒ©ã‚¹(String)
      */
     public void testFormatString() throws Exception {
         BlancoSqlFormatter formatter = new BlancoSqlFormatter(
@@ -32,8 +32,8 @@ public class BlancoSqlFormatterTest extends TestCase {
                         + "max(col1 ) AS maxcol1 FROM table1 t1\n"
                         + " ,table2 t2 WHERE t1.col1 = t2.col2 OR "
                         + "col1>3 OR col2<5 ORDER BY col1 DESC\n");
-        // ¦l—¶“_ MAX‚É‚Â‚¢‚ÄA‚Æ‚è‚ ‚¦‚¸‚ÍŒ»ó ‚±‚Ì‚æ‚¤‚Èd—l‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
-        // ¦l—¶“_ ƒhƒbƒg‚Ì‘OŒã‚É‹ó”’‚ª“ü‚Á‚Ä‚µ‚Ü‚¢‚Ü‚·B
+        // â€»è€ƒæ…®ç‚¹ MAXã«ã¤ã„ã¦ã€ã¨ã‚Šã‚ãˆãšã¯ç¾çŠ¶ ã“ã®ã‚ˆã†ãªä»•æ§˜ã¨ãªã£ã¦ã„ã¾ã™ã€‚
+        // â€»è€ƒæ…®ç‚¹ ãƒ‰ãƒƒãƒˆã®å‰å¾Œã«ç©ºç™½ãŒå…¥ã£ã¦ã—ã¾ã„ã¾ã™ã€‚
         assertEquals("SELECT\n" + "        t1.col1\n" + "        ,col2\n"
                 + "        ,col3\n" + "        ,col4\n" + "        ,col5\n"
                 + "        ,col6\n" + "        ,col7\n" + "        ,col8\n"
@@ -68,7 +68,7 @@ public class BlancoSqlFormatterTest extends TestCase {
                 + "    WHERE\n" + "        col1 = 5", strResult);
         // System.out.println(strResult);
 
-        // ¦ƒVƒ“ƒOƒ‹ƒ‰ƒCƒ“ƒRƒƒ“ƒg‚Ìš‰º‚°‚ğˆê•”•ÏXB
+        // â€»ã‚·ãƒ³ã‚°ãƒ«ãƒ©ã‚¤ãƒ³ã‚³ãƒ¡ãƒ³ãƒˆã®å­—ä¸‹ã’ã‚’ä¸€éƒ¨å¤‰æ›´ã€‚
         strResult = formatter.format("DELETE -- single line comment \n    FROM"
                 + "/* multi line comment\n          comment part is ignored */"
                 + "table1 WHERE col1 = 5");

@@ -10,38 +10,38 @@
 package blanco.commons.sql.format;
 
 /**
- * BlancoSqlFormatter: SQL���`�c�[��. SQL�������߂�ꂽ���[���ɏ]�����`���܂��B
+ * BlancoSqlFormatter: SQL整形ツール. SQL文を決められたルールに従い整形します。
  * 
- * �t�H�[�}�b�g�����{���邽�߂ɂ́A���͂����SQL��SQL���Ƃ��đÓ��ł��邱�Ƃ��O������ƂȂ�܂��B
+ * フォーマットを実施するためには、入力されるSQLがSQL文として妥当であることが前提条件となります。
  * 
- * ���̃N���X����������SQL���`�̃��[���ɂ��ẮA���LURL���Q�Ƃ��������B
+ * このクラスが準拠するSQL整形のルールについては、下記URLを参照ください。
  * http://homepage2.nifty.com/igat/igapyon/diary/2005/ig050613.html
  * 
- * ���̃N���X�� SQL�̕ϊ��K����\���܂��B
+ * このクラスは SQLの変換規則を表します。
  * 
  * @author WATANABE Yoshinori (a-san) : original version at 2005.07.04.
  * @author IGA Tosiki : marge into blanc Framework at 2005.07.04
  */
 public class BlancoSqlRule {
-    /** �L�[���[�h�̕ϊ��K��. */
+    /** キーワードの変換規則. */
     int keyword = KEYWORD_UPPER_CASE;
 
-    /** �L�[���[�h�̕ϊ��K��:�������Ȃ� */
+    /** キーワードの変換規則:何もしない */
     public static final int KEYWORD_NONE = 0;
 
-    /** �L�[���[�h�̕ϊ��K��:�啶���ɂ��� */
+    /** キーワードの変換規則:大文字にする */
     public static final int KEYWORD_UPPER_CASE = 1;
 
-    /** �L�[���[�h�̕ϊ��K��:�������ɂ��� */
+    /** キーワードの変換規則:小文字にする */
     public static final int KEYWORD_LOWER_CASE = 2;
 
     /**
-     * �C���f���g�̕�����. �ݒ�͎��R���͂Ƃ���B�ʏ�� " ", " ", "\t" �̂����ꂩ�B
+     * インデントの文字列. 設定は自由入力とする。通常は " ", " ", "\t" のいずれか。
      */
     String indentString = "    ";
 
     /**
-     * �֐��̖��O�B
+     * 関数の名前。
      */
     private String[] fFunctionNames = null;
 
@@ -50,11 +50,11 @@ public class BlancoSqlRule {
     }
 
     /**
-     * �֐��̖��O���H
+     * 関数の名前か？
      * 
      * @param name
-     *            ���ׂ閼�O
-     * @return �֐��̖��O�̂Ƃ��A<code>true</code> ��Ԃ��B
+     *            調べる名前
+     * @return 関数の名前のとき、<code>true</code> を返す。
      */
     boolean isFunction(String name) {
         if (fFunctionNames == null)
@@ -67,14 +67,14 @@ public class BlancoSqlRule {
     }
 
     /**
-     * �֐��̖��O�̔z���o�^���܂��B
+     * 関数の名前の配列を登録します。
      * 
      * @param names
-     *            �֐����̔z��Bnull�B
+     *            関数名の配列。null可。
      */
     public void setFunctionNames(String[] names) {
         fFunctionNames = names;
     }
 
-    // TODO �J�X�^�}�C�Y�̈�B�J�X�^�}�C�Y���K�v�ȏꍇ�ɂ́A�ȉ��ɋK����ǉ����Ă��������B
+    // TODO カスタマイズ領域。カスタマイズが必要な場合には、以下に規則を追加してください。
 }

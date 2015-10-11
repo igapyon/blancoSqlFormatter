@@ -8,7 +8,7 @@
 	<property name="project.zip" value="${project}-${version}-src.zip" />
 	<property name="project.main.jar" value="blancosqlformatter-${version}.jar" />
 
-	<property name="encoding" value="Windows-31J" />
+	<property name="encoding" value="UTF-8" />
 	<property name="eclipse.dir" value="C:/Program Files/eclipse" />
 
 	<!-- Antタスク定義 begin -->
@@ -73,7 +73,7 @@
 	<target name="compile">
 		<delete dir="bin" />
 		<mkdir dir="bin" />
-		<javac destdir="bin" debug="true" source="1.5" target="1.5" fork="false">
+		<javac destdir="bin" debug="true" source="1.6" target="1.6" fork="true" encoding="${encoding}">
 			<src path="blanco/main/" />
 			<src path="src/" />
 			<classpath>
