@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="blancoSqlFormatter" default="build" basedir=".">
+	<!-- blancoAnt(0.1.7)により自動生成されました。 (2008/12/04) -->
+	<property name="version" value="0.1.2" />
+
+	<property name="project" value="blancoSqlFormatter" />
+	<property name="project.lower" value="blancosqlformatter" />
+	<property name="project.zip" value="${project}-${version}-src.zip" />
+	<property name="project.main.jar" value="blancosqlformatter-${version}.jar" />
+
+	<property name="encoding" value="Windows-31J" />
+	<property name="eclipse.dir" value="C:/Program Files/eclipse" />
+
+	<!-- Antタスク定義 begin -->
+	<taskdef name="blancoconstants" classname="blanco.constants.task.BlancoConstantsTask">
+		<classpath>
+			<fileset dir="lib.ant" includes="*.jar" />
+		</classpath>
+	</taskdef>
+
+	<taskdef name="blancovalueobject" classname="blanco.valueobject.task.BlancoValueObjectTask">
+		<classpath>
+			<fileset dir="lib.ant" includes="*.jar" />
+		</classpath>
+	</taskdef>
+
+	<!-- Antタスク定義 end -->
+
+	<!-- 自分自身のAntタスク。 -->
+	<target name="pack">
+		<echo>packing project</echo>
+		<delete file="${project.zip}" />
+		<delete dir="bin" />
+		<delete dir="javadoc" />
+
+		<delete dir="tmp" />
+
+		<copy todir="lib.ant">
+			<fileset dir=".">
+				<include name="${project.lower}-*.jar" />
+			</fileset>
+		</copy>
+
+		<delete>
+			<fileset dir=".">
+				<include name="${project.lower}-*.jar" />
+			</fileset>
+		</delete>
+
+		<zip destfile="${project.zip}">
+			<zipfileset dir="." prefix="${project}" excludes="${project.zip},**/*.class" />
+		</zip>
+
+	</target>
+
+	<target name="jar">
+		<echo>building jar</echo>
+
+		<delete file="${project.main.jar}" />
+		<jar destfile="${project.main.jar}">
+			<zipfileset dir="doc" prefix="doc" />
+			<!-- classの取り込み (※sampleは除外) -->
+			<zipfileset dir="bin" includes="**/*" excludes="blanco/sample/**" />
+			<!-- Javaソースコード(通常)の取り込み (※sampleは除外) -->
+			<zipfileset dir="src" includes="**/*" prefix="src" excludes="blanco/sample/**" />
+			<!-- Javaソースコード(自動生成)の取り込み (※sampleは除外) -->
+			<zipfileset dir="blanco/main" includes="**/*.java" prefix="src" excludes="blanco/sample/**" />
+			<!-- プロパティファイルの取り込み -->
+			<zipfileset dir="blanco/main" includes="**/*.properties" excludes="blanco/sample/**" />
+		</jar>
+	</target>
+
+	<target name="compile">
+		<delete dir="bin" />
+		<mkdir dir="bin" />
+		<javac destdir="bin" debug="true" source="1.5" target="1.5" fork="false">
+			<src path="blanco/main/" />
+			<src path="src/" />
+			<classpath>
+				<!-- ワイルドカードで一括取り込み -->
+				<pathelement path="${eclipse.dir}/plugins/org.junit_3.8.2.v20080602-1318/junit.jar" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="javadoc">
+		<echo>JavaDocを生成します。</echo>
+		<delete dir="javadoc" />
+		<javadoc destdir="javadoc">
+			<fileset dir="src" />
+			<fileset dir="blanco/main" />
+			<classpath>
+				<fileset dir="lib" includes="*.jar" />
+				<fileset dir="lib.ant" includes="*.jar" />
+			</classpath>
+		</javadoc>
+	</target>
+
+	<target name="meta">
+		<blancoconstants metadir="meta/program" encoding="${encoding}" />
+		<blancovalueobject metadir="meta/program" encoding="${encoding}" />
+	</target>
+
+	<target name="build" depends="meta,compile,jar,pack">
+	</target>
+
+</project>
