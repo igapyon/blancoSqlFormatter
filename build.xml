@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="blancoSqlFormatter" default="build" basedir=".">
 	<!-- blancoAnt(0.1.7)により自動生成されました。 (2008/12/04) -->
-	<property name="version" value="0.1.2" />
+	<property name="version" value="2.0.0" />
 
 	<property name="project" value="blancoSqlFormatter" />
 	<property name="project.lower" value="blancosqlformatter" />
