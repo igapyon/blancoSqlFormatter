@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="blancoSqlFormatter" default="build" basedir=".">
 	<!-- blancoAnt(0.1.7)により自動生成されました。 (2008/12/04) -->
-	<property name="version" value="2.0.0" />
+	<property name="version" value="2.1.0" />
 
 	<property name="project" value="blancoSqlFormatter" />
 	<property name="project.lower" value="blancosqlformatter" />
@@ -9,7 +9,6 @@
 	<property name="project.main.jar" value="blancosqlformatter-${version}.jar" />
 
 	<property name="encoding" value="UTF-8" />
-	<property name="eclipse.dir" value="C:/Program Files/eclipse" />
 
 	<!-- Antタスク定義 begin -->
 	<taskdef name="blancoconstants" classname="blanco.constants.task.BlancoConstantsTask">
@@ -25,33 +24,6 @@
 	</taskdef>
 
 	<!-- Antタスク定義 end -->
-
-	<!-- 自分自身のAntタスク。 -->
-	<target name="pack">
-		<echo>packing project</echo>
-		<delete file="${project.zip}" />
-		<delete dir="bin" />
-		<delete dir="javadoc" />
-
-		<delete dir="tmp" />
-
-		<copy todir="lib.ant">
-			<fileset dir=".">
-				<include name="${project.lower}-*.jar" />
-			</fileset>
-		</copy>
-
-		<delete>
-			<fileset dir=".">
-				<include name="${project.lower}-*.jar" />
-			</fileset>
-		</delete>
-
-		<zip destfile="${project.zip}">
-			<zipfileset dir="." prefix="${project}" excludes="${project.zip},**/*.class" />
-		</zip>
-
-	</target>
 
 	<target name="jar">
 		<echo>building jar</echo>
@@ -102,7 +74,7 @@
 		<blancovalueobject metadir="meta/program" encoding="${encoding}" />
 	</target>
 
-	<target name="build" depends="meta,compile,jar,pack">
+	<target name="build" depends="meta,compile,jar">
 	</target>
 
 </project>
